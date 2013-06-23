@@ -34,6 +34,10 @@ MySQLBackendGaugesEngine.prototype.buildQuerries = function(gauges, time_stamp) 
           // The -678 value, is totally arbitrary, I just assumed that there was never gonna be a gauge with a -678 value. You can change it to any value not used by your gauges ;)
         querries.push("insert into `gauges_statistics` select "+time_stamp+", '"+gaugeName+"', "+gaugeValue+" from dual where (select if(max(value),max(value),-678) from `gauges_statistics` where name = '"+gaugeName+"') = -678 OR (select value from `gauges_statistics` where name = '"+gaugeName+"' order by timestamp desc limit 0,1) <> "+gaugeValue+";")
 
+        // querries.push("insert into `gauges_statistics` select "+time_stamp+", '"+userCounterName+"' , if(max(value),max(value),0) + "+counterValue+"  from `counters_statistics`  where if(name = '"+userCounterName+"', 1,0) = 1 ;");
+
+        // querries.push("insert into `gauges_statistics` values (" + time_stamp + ",'" + gaugeName + "'," + gaugeValue + ");");
+
       }
     }
 

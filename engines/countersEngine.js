@@ -27,7 +27,9 @@ MySQLBackendCountersEngine.prototype.buildQuerries = function(userCounters, time
          *    - userCounterName: Counter name
          *    - counterValue: Counter value
          */
-        querries.push("insert into `counters_statistics` select "+time_stamp+", '"+userCounterName+"' , if(max(value),max(value),0) + "+counterValue+"  from `counters_statistics`  where if(name = '"+userCounterName+"', 1,0) = 1 ;");
+        // querries.push("insert into `counters_statistics` select "+time_stamp+", '"+userCounterName+"' , if(max(value),max(value),0) + "+counterValue+"  from `counters_statistics`  where if(name = '"+userCounterName+"', 1,0) = 1 ;");
+
+        querries.push("insert into `counters_statistics` values (" + time_stamp + ",'" + userCounterName + "'," + counterValue+ ");");  
 
       }
     }

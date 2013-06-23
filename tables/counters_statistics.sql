@@ -2,7 +2,7 @@
 
 -- Counters statistics table
 CREATE  TABLE `counters_statistics` (
-    `timestamp` BIGINT NOT NULL ,
-    `name` VARCHAR(255) NOT NULL ,
-    `value` INT(11) NOT NULL ,
+    `timestamp` INT NOT NULL ,
+    `name` VARCHAR(64) NOT NULL ,
+    `value` INT NOT NULL ,
 PRIMARY KEY (`timestamp`,`name`) )$$

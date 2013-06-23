@@ -74,7 +74,7 @@ function StatdMySQLBackend(startupTime, config, emitter) {
       counters: ["engines/countersEngine.js"],
       gauges: ["engines/gaugesEngine.js"],
       timers: ["engines/timersEngine.js"],
-      sets: ["engines/setsEngine.js"]
+      sets: []
     };
   }
   
@@ -340,11 +340,12 @@ StatdMySQLBackend.prototype.createTable = function(table_name, callback) {
 StatdMySQLBackend.prototype.onFlush = function(time_stamp, metrics) {
   var self = this;
 
+  //console.log(metrics)
+
   var counters = metrics['counters'];
-  var timers = metrics['timers'];  
+  var timers = metrics['timer_data'];  
   var gauges = metrics['gauges'];
   var sets = metrics['sets'];
-  var pctThreshold = metrics['pctThreshold'];
 
   //console.log("METRICS : \n " + util.inspect(metrics) + "\n ===========================");
 
